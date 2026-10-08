@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'motosapp',
 ]
 
+AUTH_USER_MODEL = 'motosapp.Usuario'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
