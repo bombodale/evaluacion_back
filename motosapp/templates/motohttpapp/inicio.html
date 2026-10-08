@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BikeStore | Motocicletas</title>
+    <link rel="stylesheet" href="{% static 'motohttpapp/estilo.css' %}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container navbar">
+            <a href="{% url 'inicio' %}" class="brand">Bike<span>Store</span></a>
+            <nav class="nav-links">
+                <a href="{% url 'inicio' %}">Inicio</a>
+                <a href="#catalogo">Catálogo</a>
+                <a href="#ofertas">Ofertas</a>
+                <a href="{% url 'crear' %}">Crear moto</a>
+            </nav>
+            <div class="nav-actions">
+                <a href="#catalogo" class="cart-btn">Carrito (2)</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <div class="hero-box">
+                <div class="hero-text">
+                    <span class="eyebrow">Calidad y potencia</span>
+                    <h1>Descubre la moto que te lleva más lejos.</h1>
+                    <p>Explora modelos deportivos, urbanas y de alto rendimiento con un estilo moderno pensado para riders que buscan emoción y estilo.</p>
+                    <div class="hero-actions">
+                        <a href="{% url 'crear' %}" class="btn btn-primary">Agregar moto</a>
+                        <a href="#catalogo" class="btn btn-secondary">Ver catálogo</a>
+                    </div>
+                </div>
+                <div class="hero-image"></div>
+            </div>
+        </section>
+
+        <section class="promo-strip" id="ofertas">
+            <div class="promo-panel promo-uno">
+                <span class="promo-badge">OFERTA</span>
+                <h3>Financiación hasta 24 meses</h3>
+                <p>Sin intereses en modelos seleccionados.</p>
+                <a href="#catalogo" class="promo-cta">Ver motos</a>
+            </div>
+            <div class="promo-panel promo-dos">
+                <span class="promo-badge">HOT DEAL</span>
+                <h3>Descuentos del 15%</h3>
+                <p>En accesorios y equipamiento premium.</p>
+                <a href="#catalogo" class="promo-cta">Ir al carrito</a>
+            </div>
+        </section>
+
+        <h2 class="section-title" id="catalogo">Catálogo</h2>
+        <section class="moto-grid">
+            {% for moto in motos %}
+            <article class="moto-card">
+                <div class="moto-image" style="background-image: url('{{ moto.imagen }}');"></div>
+                <div class="moto-body">
+                    <h3>{{ moto.nombre }}</h3>
+                    <div class="moto-meta">
+                        <span>{{ moto.marca }}</span>
+                        <span>{{ moto.anio }}</span>
+                    </div>
+                    <div class="price">${{ moto.precio }}</div>
+                    <div class="card-actions">
+                        <a href="{% url 'detalle' moto_id=moto.id %}" class="link-light">Ver moto</a>
+                        <a href="#" class="link-light">Carrito</a>
+                    </div>
+                </div>
+            </article>
+            {% empty %}
+            <p>No hay motos registradas.</p>
+            {% endfor %}
+        </section>
+    </main>
+</body>
+</html>

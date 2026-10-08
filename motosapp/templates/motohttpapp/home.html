@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BikeStore</title>
+    <link rel="stylesheet" href="{% static 'motohttpapp/estilo.css' %}">
+</head>
+<body class="home-body">
+    <div class="home-wrapper">
+        <div class="home-card">
+            <div class="home-image" style="background-image: url('https://www.yamahamotos.cl/wp-content/uploads/2016/09/r1_negra.jpg');"></div>
+            <div class="home-content">
+                <span class="home-tag">MOTOCICLETAS</span>
+                <h1>Tu próxima aventura empieza aquí</h1>
+                <p>Descubre modelos deportivos, urbanas y premium con estilo, potencia y personalidad.</p>
+                <a href="{% url 'inicio' %}" class="home-btn">Entrar a la tienda</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

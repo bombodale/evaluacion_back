@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear moto</title>
+    <link rel="stylesheet" href="{% static 'motohttpapp/estilo.css' %}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container navbar">
+            <a href="{% url 'inicio' %}" class="brand">Bike<span>Store</span></a>
+            <nav class="nav-links">
+                <a href="{% url 'inicio' %}">Inicio</a>
+                <a href="{% url 'crear' %}">Crear moto</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="form-shell">
+            <div class="form-header">
+                <h1>Crear motocicleta</h1>
+            </div>
+            <div class="form-body">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre">
+                    </div>
+                    <div class="form-group">
+                        <label for="marca">Marca</label>
+                        <input type="text" id="marca" name="marca">
+                    </div>
+                    <div class="form-group">
+                        <label for="anio">Año</label>
+                        <input type="number" id="anio" name="anio">
+                    </div>
+                    <div class="form-group">
+                        <label for="precio">Precio</label>
+                        <input type="number" id="precio" name="precio">
+                    </div>
+                    <div class="form-group">
+                        <label for="imagen">Imagen (URL)</label>
+                        <input type="url" id="imagen" name="imagen" placeholder="https://...">
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit">Guardar</button>
+                        <a href="{% url 'inicio' %}" class="link-button">Volver</a>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

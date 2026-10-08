@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle moto</title>
+    <link rel="stylesheet" href="{% static 'motohttpapp/estilo.css' %}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container navbar">
+            <a href="{% url 'inicio' %}" class="brand">Bike<span>Store</span></a>
+            <nav class="nav-links">
+                <a href="{% url 'inicio' %}">Inicio</a>
+                <a href="{% url 'crear' %}">Crear moto</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="detail-card">
+            <div class="detail-grid">
+                <div class="detail-image" style="background-image: url('{{ moto.imagen }}');"></div>
+                <div class="detail-body">
+                    <h1>{{ moto.nombre }}</h1>
+                    <div class="detail-meta">{{ moto.marca }} • {{ moto.anio }}</div>
+                    <div class="price">${{ moto.precio }}</div>
+                    <p>Motor potente, diseño deportivo y una experiencia de conducción que combina estilo, control y precisión.</p>
+                    <div class="card-actions">
+                        <a href="{% url 'editar' moto_id=moto.id %}" class="btn btn-primary">Editar</a>
+                        <a href="{% url 'eliminar' moto_id=moto.id %}" class="btn btn-secondary">Eliminar</a>
+                    </div>
+                    <div class="form-actions">
+                        <a href="{% url 'inicio' %}" class="link-button">Volver al catálogo</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

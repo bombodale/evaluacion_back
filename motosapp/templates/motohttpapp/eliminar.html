@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminar moto</title>
+    <link rel="stylesheet" href="{% static 'motohttpapp/estilo.css' %}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container navbar">
+            <a href="{% url 'inicio' %}" class="brand">Bike<span>Store</span></a>
+            <nav class="nav-links">
+                <a href="{% url 'inicio' %}">Inicio</a>
+                <a href="{% url 'crear' %}">Crear moto</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="confirm-box">
+            <h1>Eliminar motocicleta</h1>
+            <p>¿Estás seguro de que quieres eliminar <strong>{{ moto.nombre }}</strong>?</p>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-actions" style="justify-content: center;">
+                    <button type="submit">Sí, eliminar</button>
+                    <a href="{% url 'inicio' %}" class="link-button">No, volver</a>
+                </div>
+            </form>
+        </section>
+    </main>
+</body>
+</html>
