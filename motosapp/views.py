@@ -34,9 +34,7 @@ MOTOS_DEMO = (
 
 
 def home(request):
-    if request.method != "GET":
-        return HttpResponse("Método no permitido.", status=405)
-    return render(request, "motosapp/home.html")
+    return inicio(request)
 
 
 def _cargar_motos_demo():
@@ -79,7 +77,7 @@ def inicio(request):
         _datos_vista(modelo)
         for modelo in Modelo.objects.select_related("marca").filter(activo=True)
     ]
-    return render(request, "motosapp/inicio.html", {"motos": motos})
+    return render(request, "motosapp/home.html", {"motos": motos})
 
 
 def _guardar_modelo(request, modelo=None):
