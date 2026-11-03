@@ -25,7 +25,12 @@
         </div>
         <div class="form-body">
           <form method="post">
-            {% csrf_token %}
+            {% if error %}
+            <div class="validation-error" role="alert">
+              <strong>No se pudo guardar la motocicleta:</strong>
+              <p>{{ error }}</p>
+            </div>
+            {% endif %} {% csrf_token %}
             <div class="form-group">
               <label for="nombre">Nombre</label>
               <input
