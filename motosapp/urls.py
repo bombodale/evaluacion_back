@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 from rest_framework.authtoken.views import obtain_auth_token
-
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('', views.inicio, name='home'),
@@ -16,5 +16,9 @@ urlpatterns = [
     
     path("api/modelos/<int:modelo_id>/",views.ModeloDetalleAPI.as_view(),   name="api_modelo_detalle"),
     
-    
+    path(
+    "login/",
+    auth_views.LoginView.as_view(template_name="motosapp/login.html"),
+    name="login"),
+    path("logout/", auth_views.LogoutView.as_view(), name="logout"),
 ]

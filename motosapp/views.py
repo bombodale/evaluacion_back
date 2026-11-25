@@ -9,6 +9,7 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.parsers import JSONParser
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.renderers import JSONRenderer
+from django.contrib.auth.decorators import login_required
 
 from rest_framework import status
 from rest_framework.response import Response
@@ -140,7 +141,7 @@ def _guardar_modelo(request, modelo=None):
     modelo.save()
     return modelo
 
-
+@login_required
 def crear(request):
     if request.method == "GET":
         return render(request, "motosapp/crear.html")
@@ -158,7 +159,7 @@ def crear(request):
 
     return redirect("detalle", moto_id=modelo.pk)
 
-
+@login_required
 def detalle(request, moto_id):
     if request.method != "GET":
         return HttpResponse("Método no permitido.", status=405)
@@ -177,7 +178,7 @@ def detalle(request, moto_id):
         {"moto": _datos_vista(modelo)},
     )
 
-
+@login_required
 def editar(request, moto_id):
     modelo = (
         Modelo.objects.select_related("marca")
@@ -210,7 +211,7 @@ def editar(request, moto_id):
 
     return redirect("detalle", moto_id=modelo.pk)
 
-
+@login_required
 def eliminar(request, moto_id):
     modelo = (
         Modelo.objects.select_related("marca")

@@ -26,11 +26,12 @@
         <div class="form-body">
           <form method="post">
             {% if error %}
-            <div class="validation-error" role="alert">
+            <div class="validation-error" role= "alert">
               <strong>No se pudo guardar la motocicleta:</strong>
               <p>{{ error }}</p>
             </div>
-            {% endif %} {% csrf_token %}
+            {% endif %}
+            {% csrf_token %}
             <div class="form-group">
               <label for="nombre">Nombre</label>
               <input type="text" id="nombre" name="nombre" />
